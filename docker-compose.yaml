@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: postgres
+    container_name: fundamentos-backend-pg
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: fundamentos-backend
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - ./data/pg:/var/lib/postgresql/data
