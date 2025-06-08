@@ -3,7 +3,7 @@ import { ProductRepository } from 'src/product/domain/repositories/product.repos
 import { Product } from 'src/product/domain/entities/product.entity';
 
 @Injectable()
-export class EditProductUseCase {
+export class EditProductService {
   constructor(private readonly repository: ProductRepository) {}
 
   async execute(product: Product): Promise<void> {

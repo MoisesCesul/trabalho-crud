@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
 import { ProductPrismaRepository } from 'src/product/infrastructure/prisma/product-prisma.repository';
-import { GetProductByIdUseCase } from 'src/product/aplication/use-cases/get-product-by-id.use-case';
-import { GetProductsUseCase } from 'src/product/aplication/use-cases/get-products.use-case';
 import { ProductGetController } from 'src/product/interfaces/controllers/product-get-controller';
 import { ProductRepository } from 'src/product/domain/repositories/product.repository';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { CreateProductController } from 'src/product/interfaces/controllers/product-create-controller';
-import { DeleteProductUseCase } from 'src/product/aplication/use-cases/delete-product.use-case';
+import { DeleteProductUseCase } from 'src/product/aplication/services/delete-product.service';
 import { ProductDeleteController } from 'src/product/interfaces/controllers/product-delete-controller';
 import { EditProductController } from 'src/product/interfaces/controllers/product-edit-controller';
-import { EditProductUseCase } from 'src/product/aplication/use-cases/edit-product.use-case';
+import { EditProductService } from 'src/product/aplication/services/edit-product.service';
+import { GetProductsService } from 'src/product/aplication/services/get-products.service';
+import { GetProductByIdService } from 'src/product/aplication/services/get-product-by-id.service';
 
 @Module({
   imports: [PrismaModule],
@@ -19,12 +19,12 @@ import { EditProductUseCase } from 'src/product/aplication/use-cases/edit-produc
       provide: ProductRepository,
       useClass: ProductPrismaRepository,
     },
-    GetProductByIdUseCase,
-    GetProductsUseCase,
+    GetProductByIdService,
+    GetProductsService,
     ProductPrismaRepository,
     DeleteProductUseCase,
-    EditProductUseCase
+    EditProductService
   ],
-  exports: [GetProductByIdUseCase, GetProductsUseCase,DeleteProductUseCase, EditProductUseCase],
+  exports: [GetProductByIdService, GetProductsService,DeleteProductUseCase, EditProductService],
 })
 export class ProductModule {}

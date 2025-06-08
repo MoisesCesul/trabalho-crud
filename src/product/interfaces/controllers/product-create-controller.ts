@@ -1,17 +1,17 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { CreateProductUseCase } from 'src/product/aplication/use-cases/create-product.use-case';
 import { ProductPrismaRepository } from 'src/product/infrastructure/prisma/product-prisma.repository';
 import { CreateProductDto } from './dto/create-product.dto';
 import { CreateProductSchema } from '../validators/create-product.schema';
+import { CreateProductService } from 'src/product/aplication/services/create-product.service';
 
 
 
 @Controller('products')
 export class CreateProductController {
-  private readonly createProduct: CreateProductUseCase;
+  private readonly createProduct: CreateProductService;
 
   constructor(private readonly productRepo: ProductPrismaRepository) {
-    this.createProduct = new CreateProductUseCase(this.productRepo);
+    this.createProduct = new CreateProductService(this.productRepo);
   }
 
 @Post()

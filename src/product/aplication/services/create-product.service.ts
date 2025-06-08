@@ -4,7 +4,7 @@ import { ProductRepository } from '../../domain/repositories/product.repository'
 import { CreateProductInput } from '../../interfaces/validators/create-product.schema';
 import { v4 as uuid } from 'uuid';
 @Injectable()
-export class CreateProductUseCase {
+export class CreateProductService {
   constructor(private readonly productRepo: ProductRepository) { }
 
   async execute(data: CreateProductInput): Promise<Product> {

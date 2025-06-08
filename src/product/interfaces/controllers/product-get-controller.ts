@@ -1,6 +1,6 @@
 import { Controller, Get, Param, ParseUUIDPipe, Query } from '@nestjs/common';
-import { GetProductByIdUseCase } from 'src/product/aplication/use-cases/get-product-by-id.use-case';
-import { GetProductsUseCase } from 'src/product/aplication/use-cases/get-products.use-case';
+import { GetProductByIdService } from 'src/product/aplication/services/get-product-by-id.service';
+import { GetProductsService } from 'src/product/aplication/services/get-products.service';
 import { z } from 'zod';
 
 const PaginationSchema = z.object({
@@ -11,8 +11,8 @@ const PaginationSchema = z.object({
 @Controller('products')
 export class ProductGetController {
   constructor(
-    private readonly getProductsUseCase: GetProductsUseCase,
-    private readonly getProductByIdUseCase: GetProductByIdUseCase,
+    private readonly getProductsUseCase: GetProductsService,
+    private readonly getProductByIdUseCase: GetProductByIdService,
   ) {}
 
   @Get(':id')
